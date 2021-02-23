@@ -2,12 +2,38 @@
     <li class="fa fa-star-o"></li>
 
 </h1>
-<div class="text-right">v1.0</div>
+<div class="text-right">v1.1</div>
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <p>Basada en la clasificacion de stats del reloj y los caps indicados en la parte derecha, se calcula el substat probable y el que rompe el patron</p>
+                <div class="row col">
+                    <p>Seleccionando el tipo de artefacto, se muestra el orden de los stats y sus caps a la derecha de la pantalla, se calcula el substat probable y el que rompe el patron</p>
+                    <p style="color:red; display: none;" class="hidden"><b>Nota:</b> aun no incluye bonos elementales en el caliz</p>
+                </div>
+                <div class="row">
+                    <div class="col-3 p-2">
+                        <label for="">Tipo de Artefacto:</label>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-3">
+                                <mat-select class="form-control" name="artefacto" [(ngModel)]="artefactoSel" (selectionChange)="seleccionarArtefacto($event.value)">
+                                    <mat-label class="mat-option">Seleccione una opción...</mat-label>
+                                    <mat-option *ngFor="let item of artefactos | keyvalue: originalOrder" [value]="item">
+                                        <div class="row p-2">
+                                            <div class="col-4">{{item.value}}</div>
+                                            <div class="col-2"><img with="50" height="50" src="../../assets/img/{{item.key}}.png"></div>
+                                        </div>
+                                    </mat-option>
+                                </mat-select>
+                            </div>
+                            <div class="col-1">
+                                <img with="50" height="50" src="../../assets/img/{{artefactoSel?.key}}.png" *ngIf="artefactoSel!=null">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -26,7 +52,7 @@
                             <div class="col">
                                 <mat-select class="form-control" name="principal" [(ngModel)]="statPrincipal">
                                     <mat-label class="mat-option">Seleccione una opción...</mat-label>
-                                    <mat-option *ngFor="let item of tiposStats" [value]="item">{{item.nombre}}</mat-option>
+                                    <mat-option *ngFor="let item of tiposStatsPrincipal" [value]="item">{{item.nombre}}</mat-option>
                                 </mat-select>
                             </div>
                         </div>

@@ -10,22 +10,114 @@ export class CalculadoraComponent implements OnInit {
 
   constructor() { }
 
-  statsPred = {
+  /* tipos de artefacto */
+  artefactos = new Map()
+    .set('flower', 'Flor')
+    .set('feather', 'Pluma')
+    .set('sands', 'Reloj')
+    .set('goblet', 'Cáliz')
+    .set('circlet', 'Casco');
 
-  };
+  /* stats principal por artefacto */
+  statPrincipalByArtefacto = new Map()
+    .set('flower', [
+      new Stat(-1, 'vida', null, null, true, true)
+    ])
+    .set('feather', [
+      new Stat(-1, 'ataque', null, null, true, true)
+    ])
+    .set('sands', [
+      new Stat(3, 'vida %', null, null, null, true),
+      new Stat(5, 'defensa %', null, null, null, true),
+      new Stat(4, 'ataque %', null, null, null, true),
+      new Stat(6, 'maestria elemental', null, null, null, true),
+      new Stat(8, 'recarga de energia %', null, null, null, true)
+    ])
+    .set('goblet', [
+      new Stat(-1, 'daño elemental %', null, null, true, true),
+      new Stat(5, 'ataque %', null, null, null, true),
+      new Stat(3, 'defensa %', null, null, null, true),
+      new Stat(4, 'vida %', null, null, null, true),
+      new Stat(-1, 'daño fisico %', null, null, true, true),
+      new Stat(6, 'maestria elemental', null, null, null, true)
+    ])
+    .set('circlet', [
+      new Stat(6, 'defensa %', null, null, null, true),
+      new Stat(3, 'vida %', null, null, null, true),
+      new Stat(5, 'ataque %', null, null, null, true),
+      new Stat(8, 'probabilidad de critico', null, null, true, true),
+      new Stat(9, 'daño critico', null, null, true, true),
+      new Stat(-1, 'bono de curacion', null, null, null, true),
+      new Stat(7, 'maestria elemental', null, null, null, true)
+    ]);
 
-  /* tipos de stats con max cap - usando orden del reloj */
+  /* configuracion de stats por tipo de artefacto */
+  statsByArtefacto = new Map()
+    .set('flower', [
+      new Stat(0, 'ataque', 19, '14-19', false),
+      new Stat(1, 'defensa', 23, '16-23', false),
+      new Stat(2, 'defensa %', 7.3, '5.1-7.3 %', false),
+      new Stat(3, 'maestria elemental', 23, '16-23', false),
+      new Stat(4, 'ataque %', 5.8, '4.1-5.8 %', false),
+      new Stat(5, 'vida %', 5.8, '4.1-5.8 %', false),
+      new Stat(6, 'recarga de energia %', 6.5, '4.5-6.5 %', false),
+      new Stat(7, 'probabilidad de critico', 3.9, '2.7-3.9 %', false),
+      new Stat(8, 'daño critico', 7.8, '5.4-78 %', false)
+    ])
+    .set('feather', [
+      new Stat(0, 'defensa', 23, '16-23', false),
+      new Stat(1, 'vida', 299, '209-299', false),
+      new Stat(2, 'ataque %', 5.8, '4.1-5.8 %', false),
+      new Stat(3, 'maestria elemental', 23, '16-23', false),
+      new Stat(4, 'defensa %', 7.3, '5.1-7.3 %', false),
+      new Stat(5, 'recarga de energia %', 6.5, '4.5-6.5 %', false),
+      new Stat(6, 'vida %', 5.8, '4.1-5.8 %', false),
+      new Stat(7, 'daño critico', 7.8, '5.4-78 %', false),
+      new Stat(8, 'probabilidad de critico', 3.9, '2.7-3.9 %', false),
+    ])
+    .set('sands', [
+      new Stat(0, 'defensa', 23, '16-23', false),
+      new Stat(1, 'ataque', 19, '14-19', false),
+      new Stat(2, 'vida', 299, '209-299', false),
+      new Stat(3, 'vida %', 5.8, '4.1-5.8 %', false),
+      new Stat(4, 'ataque %', 5.8, '4.1-5.8 %', false),
+      new Stat(5, 'defensa %', 7.3, '5.1-7.3 %', false),
+      new Stat(6, 'maestria elemental', 23, '16-23', false),
+      new Stat(7, 'probabilidad de critico', 3.9, '2.7-3.9 %', false),
+      new Stat(8, 'recarga de energia %', 6.5, '4.5-6.5 %', false),
+      new Stat(9, 'daño critico', 7.8, '5.4-78 %', false)
+    ])
+    .set('goblet', [
+      new Stat(0, 'ataque', 19, '14-19', false),
+      new Stat(1, 'defensa', 23, '16-23', false),
+      new Stat(2, 'vida', 299, '209-299', false),
+      new Stat(3, 'defensa %', 7.3, '5.1-7.3 %', false),
+      new Stat(4, 'vida %', 5.8, '4.1-5.8 %', false),
+      new Stat(5, 'ataque %', 5.8, '4.1-5.8 %', false),
+      new Stat(6, 'maestria elemental', 23, '16-23', false),
+      new Stat(7, 'recarga de energia %', 6.5, '4.5-6.5 %', false),
+      new Stat(8, 'probabilidad de critico', 3.9, '2.7-3.9 %', false),
+      new Stat(9, 'daño critico', 7.8, '5.4-78 %', false)
+    ])
+    .set('circlet', [
+      new Stat(0, 'ataque', 19, '14-19', false),
+      new Stat(1, 'defensa', 23, '16-23', false),
+      new Stat(2, 'vida', 299, '209-299', false),
+      new Stat(3, 'vida %', 5.8, '4.1-5.8 %', false),
+      new Stat(4, 'recarga de energia %', 6.5, '4.5-6.5 %', false),
+      new Stat(5, 'ataque %', 5.8, '4.1-5.8 %', false),
+      new Stat(6, 'defensa %', 7.3, '5.1-7.3 %', false),
+      new Stat(7, 'maestria elemental', 23, '16-23', false),
+      new Stat(8, 'probabilidad de critico', 3.9, '2.7-3.9 %', false),
+      new Stat(9, 'daño critico', 7.8, '5.4-78 %', false)
+    ]);
+
+  /* stats principal */
+  tiposStatsPrincipal = [
+  ];
+
+  /* stats seleccionado del tipo de artefacto */
   tiposStats = [
-    new Stat(0, 'defensa', 23, '16-23', false),
-    new Stat(1, 'ataque', 19, '14-19', false),
-    new Stat(2, 'vida', 299, '209-299', false),
-    new Stat(3, 'vida %', 5.8, '4.1-5.8 %', false),
-    new Stat(4, 'ataque %', 5.8, '4.1-5.8 %', false),
-    new Stat(5, 'defensa %', 7.3, '5.1-7.3 %', false),
-    new Stat(6, 'maestria elemental', 23, '16-23', false),
-    new Stat(7, 'probabilidad de critico', 3.9, '2.7-3.9 %', false),
-    new Stat(8, 'recarga de energia %', 6.5, '4.5-6.5 %', false),
-    new Stat(9, 'daño critico', 7.8, '5.4-78 %', false)
   ];
 
   statPrincipal = new Stat();
@@ -39,11 +131,21 @@ export class CalculadoraComponent implements OnInit {
     ruptura: new StatArtefacto()
   };
 
+  artefactoSel;
+
+  statsPred = {
+  };
+
   ngOnInit(): void {
   }
 
   compareObjectsId(object1: any, object2: any) {
     return object1 && object2 && object1.id === object2.id;
+  }
+
+  seleccionarArtefacto(obj: any) {
+    this.tiposStats = this.statsByArtefacto.get(obj.key);
+    this.tiposStatsPrincipal = this.statPrincipalByArtefacto.get(obj.key);
   }
 
   filterStats(statPrincipal: any) {
@@ -76,9 +178,9 @@ export class CalculadoraComponent implements OnInit {
       this.statsArtefacto[key].calc = this.obtenerCap(this.statsArtefacto[key].tipo?.maxcap, this.statsArtefacto[key].valor);
       this.statsArtefacto[key].diff = 100 - this.statsArtefacto[key].calc;
     }
-    const statCalculado = this.minimoCercanoAl100();
-    console.log(statCalculado[0]);
     const statMandatory = this.arrayMinDiff(this.statsArtefactoToList());
+    const statCalculado = this.minimoCercanoAl100(statMandatory);
+    console.log(statCalculado[0]);
     const statRuptura = this.rompePatronArtefactos(statMandatory.tipo.pos);
     console.log(statRuptura[0]);
     this.statsArtefacto.cuatro.tipo = statCalculado[0];
@@ -94,8 +196,7 @@ export class CalculadoraComponent implements OnInit {
     return 0;
   }
 
-  minimoCercanoAl100() {
-    const statMandatory = this.arrayMinDiff(this.statsArtefactoToList());
+  minimoCercanoAl100(statMandatory: any) {
     // console.log('el primero mas cercano', statMandatory);
     // console.log('el stat calculado', this.hallarStat(statMandatory.tipo.pos + 1, this.statsArtefactoToList()));
     return this.hallarStat(statMandatory.tipo.pos + 1, this.statsArtefactoToList());
@@ -153,7 +254,8 @@ export class Stat {
     public nombre?: string,
     public maxcap?: number,
     public cap?: string,
-    public isElemental?: boolean
+    public isElemental?: boolean,
+    public isPrincipal?: boolean
   ) {
 
   }

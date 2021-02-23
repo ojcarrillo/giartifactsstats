@@ -44,3 +44,9 @@ body {
 .card .card-title {
     position: relative;
 }
+
+.floatRightClear {
+    float: right;
+    clear: right;
+    margin-left: 20px
+}
