@@ -62,7 +62,7 @@ export class CalculadoraComponent implements OnInit {
       new Stat(5, 'vida %', 5.8, '4.1-5.8 %', false),
       new Stat(6, 'recarga de energia %', 6.5, '4.5-6.5 %', false),
       new Stat(7, 'probabilidad de critico', 3.9, '2.7-3.9 %', false),
-      new Stat(8, 'daño critico', 7.8, '5.4-78 %', false)
+      new Stat(8, 'daño critico', 7.8, '5.4-7.8 %', false)
     ])
     .set('feather', [
       new Stat(0, 'defensa', 23, '16-23', false),
@@ -72,7 +72,7 @@ export class CalculadoraComponent implements OnInit {
       new Stat(4, 'defensa %', 7.3, '5.1-7.3 %', false),
       new Stat(5, 'recarga de energia %', 6.5, '4.5-6.5 %', false),
       new Stat(6, 'vida %', 5.8, '4.1-5.8 %', false),
-      new Stat(7, 'daño critico', 7.8, '5.4-78 %', false),
+      new Stat(7, 'daño critico', 7.8, '5.4-7.8 %', false),
       new Stat(8, 'probabilidad de critico', 3.9, '2.7-3.9 %', false),
     ])
     .set('sands', [
@@ -85,7 +85,7 @@ export class CalculadoraComponent implements OnInit {
       new Stat(6, 'maestria elemental', 23, '16-23', false),
       new Stat(7, 'probabilidad de critico', 3.9, '2.7-3.9 %', false),
       new Stat(8, 'recarga de energia %', 6.5, '4.5-6.5 %', false),
-      new Stat(9, 'daño critico', 7.8, '5.4-78 %', false)
+      new Stat(9, 'daño critico', 7.8, '5.4-7.8 %', false)
     ])
     .set('goblet', [
       new Stat(0, 'ataque', 19, '14-19', false),
@@ -97,7 +97,7 @@ export class CalculadoraComponent implements OnInit {
       new Stat(6, 'maestria elemental', 23, '16-23', false),
       new Stat(7, 'recarga de energia %', 6.5, '4.5-6.5 %', false),
       new Stat(8, 'probabilidad de critico', 3.9, '2.7-3.9 %', false),
-      new Stat(9, 'daño critico', 7.8, '5.4-78 %', false)
+      new Stat(9, 'daño critico', 7.8, '5.4-7.8 %', false)
     ])
     .set('circlet', [
       new Stat(0, 'ataque', 19, '14-19', false),
@@ -109,7 +109,7 @@ export class CalculadoraComponent implements OnInit {
       new Stat(6, 'defensa %', 7.3, '5.1-7.3 %', false),
       new Stat(7, 'maestria elemental', 23, '16-23', false),
       new Stat(8, 'probabilidad de critico', 3.9, '2.7-3.9 %', false),
-      new Stat(9, 'daño critico', 7.8, '5.4-78 %', false)
+      new Stat(9, 'daño critico', 7.8, '5.4-7.8 %', false)
     ]);
 
   /* stats principal */
