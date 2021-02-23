@@ -149,11 +149,11 @@ export class CalculadoraComponent implements OnInit {
   }
 
   filterStats(statPrincipal: any) {
-    return this.tiposStats.filter(p => p !== statPrincipal);
+    return this.tiposStats.filter(p => p.pos !== statPrincipal.pos);
   }
 
   filterSubStats(statPrincipal: any, stat1: any, stat2: any) {
-    return this.tiposStats.filter(p => p !== statPrincipal && p !== stat1 && p !== stat2);
+    return this.tiposStats.filter(p => p.pos !== statPrincipal?.pos && p.pos !== stat1?.pos && p.pos !== stat2?.pos);
   }
 
   limpiar() {
