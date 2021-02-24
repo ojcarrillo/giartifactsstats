@@ -144,6 +144,8 @@ export class CalculadoraComponent implements OnInit {
   }
 
   seleccionarArtefacto(obj: any) {
+    this.statsPred = {};
+    this.limpiar();
     this.tiposStats = this.statsByArtefacto.get(obj.key);
     this.tiposStatsPrincipal = this.statPrincipalByArtefacto.get(obj.key);
   }
